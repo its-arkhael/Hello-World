@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Backend Test</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #1b1e20;
+    }
+    button {
+      padding: 14px 28px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      border: 2px solid #fbf8ef;
+      background-color: #005f73;
+      color: #fbf8ef;
+    }
+    button:hover {
+      background-color: #0081a7;
+    }
+  </style>
+</head>
+<body>
+
+  <button id="hello-btn">hello world!</button>
+
+  <script>
+    document.getElementById('hello-btn').addEventListener('click', async () => {
+      try {
+        // Ask the .js backend for the response
+        const response = await fetch('/api/check');
+        const data = await response.json();
+
+        // Trigger the browser popup with the backend's message
+        alert(data.message);
+      } catch (error) {
+        alert('Could not reach the backend server.');
+      }
+    });
+  </script>
+
+</body>
+</html>
